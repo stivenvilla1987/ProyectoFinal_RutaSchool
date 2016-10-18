@@ -3,15 +3,12 @@ package com.proyecto.rutaschool;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 public class ingreso  extends AppCompatActivity implements View.OnClickListener{
     //Variables
-    private TextInputLayout tilUsuario;
-    private TextInputLayout tilContrasena;
     private EditText txtNameUsu ,txtPassUsu;
     private Cursor fila;
 
