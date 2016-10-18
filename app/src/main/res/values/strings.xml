@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Ruta School</string>
+    <string name="hint_name">Nombres</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_lastName">Apellidos</string>
+</resources>
