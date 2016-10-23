@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ingreso  extends AppCompatActivity implements View.OnClickListener{
     //Variables
     private EditText txtNameUsu ,txtPassUsu;
     private Cursor fila;
+    SQLite_OpenHelper helper = new SQLite_OpenHelper(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,12 @@ public class ingreso  extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
             case R.id.boton_sesion:
+                helper.abrirDB();
+                String email = txtNameUsu.getText().toString();
+                String pass = txtPassUsu.getText().toString();
+               boolean si=  helper.loginUsuario(email, pass);
+                Toast.makeText(this, "login "+si, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.boton_registro:
                 Intent intent = new Intent(this, Registro.class);

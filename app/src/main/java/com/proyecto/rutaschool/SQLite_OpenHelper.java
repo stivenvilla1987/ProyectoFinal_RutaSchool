@@ -2,6 +2,8 @@ package com.proyecto.rutaschool;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -46,7 +48,16 @@ public class SQLite_OpenHelper extends SQLiteOpenHelper {
         valores.put("Direccion",dir);
         valores.put("Correo",email);
         valores.put("Password",pass);
-        this.getWritableDatabase().insert("usuarios",null,valores);
+        this.getWritableDatabase().insert(TABLE_NAME,null,valores);
+    }
+
+    //Método que permite validar si el usuario existe
+    public boolean loginUsuario(String email, String pass)throws SQLException{
+        Cursor cursor = this.getReadableDatabase().rawQuery(
+                "select * from " + TABLE_NAME + " where " + "Correo" + " ='"+email+"' AND Password ='"+pass+"'", null);
+        int value = cursor.getCount();
+        cursor.close();
+        return value == 1;
     }
 
 }
