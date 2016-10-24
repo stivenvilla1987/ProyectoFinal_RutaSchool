@@ -36,7 +36,7 @@ public class ingreso  extends AppCompatActivity implements View.OnClickListener{
                 helper.abrirDB();
                 String email = txtNameUsu.getText().toString();
                 String pass = txtPassUsu.getText().toString();
-               boolean si=  helper.loginUsuario(email, pass);
+                boolean si=  helper.loginUsuario(email, pass);
                 Toast.makeText(this, "login "+si, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.boton_registro:
