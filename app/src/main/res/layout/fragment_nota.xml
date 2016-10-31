@@ -1,0 +1,28 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.proyecto.rutaschool.NotaFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ExpandableListView
+            android:id="@+id/ex_lista"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp">
+
+        </ExpandableListView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorFondo">
+
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</FrameLayout>

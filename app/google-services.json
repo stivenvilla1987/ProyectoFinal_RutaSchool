@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1082228931922",
+    "firebase_url": "https://ruta-school.firebaseio.com",
+    "project_id": "ruta-school",
+    "storage_bucket": "ruta-school.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082228931922:android:e4c2c07682f17bf7",
+        "android_client_info": {
+          "package_name": "com.proyecto.rutaschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082228931922-g9mkuocria9drbh4lab6hqh268tddikp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.proyecto.rutaschool",
+            "certificate_hash": "AC6047310CE3D4DE0629FAD2BA680D02A2BF4422"
+          }
+        },
+        {
+          "client_id": "1082228931922-o1as8k6hpkaoqs6mj7261mti9dvajso6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABDWE_Xkf4yxGGT8Rk-Px1pq1vYckm6ZU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082228931922-o1as8k6hpkaoqs6mj7261mti9dvajso6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

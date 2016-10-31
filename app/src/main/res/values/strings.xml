@@ -4,4 +4,8 @@
     <string name="hint_email">Correo electrónico</string>
     <string name="hint_password">Contraseña</string>
     <string name="hint_lastName">Apellidos</string>
+    <string name="title_activity_usuario_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -38,6 +38,8 @@ public class ingreso  extends AppCompatActivity implements View.OnClickListener{
                 String pass = txtPassUsu.getText().toString();
                 boolean si=  helper.loginUsuario(email, pass);
                 Toast.makeText(this, "login "+si, Toast.LENGTH_SHORT).show();
+                Intent mapsUser = new Intent(this, UsuarioMaps.class);
+                startActivity(mapsUser);
                 break;
             case R.id.boton_registro:
                 Intent intent = new Intent(this, Registro.class);
