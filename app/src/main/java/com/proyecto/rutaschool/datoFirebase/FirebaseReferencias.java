@@ -8,5 +8,4 @@ public class FirebaseReferencias {
     final public static String RUTA_REFERENCIA = "localizacion";
     final public static String DATOS_REFERENCIA = "datos";
     final public static String USUARIO_REFERENCIA = "usuario";
-
 }

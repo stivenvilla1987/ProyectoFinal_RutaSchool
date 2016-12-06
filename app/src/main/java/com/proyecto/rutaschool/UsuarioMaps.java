@@ -2,9 +2,6 @@ package com.proyecto.rutaschool;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,11 +18,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.proyecto.rutaschool.datoFirebase.FirebaseReferencias;
 import com.proyecto.rutaschool.datoFirebase.Localizacion;
 
-public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback,
-        View.OnClickListener{
+public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
 
-    double latitud;
-    double longitud;
+    public static double latitud;
+    public static double longitud;
     private GoogleMap mMap;
     Button btnVideo, btnNota;
    // private FirebaseDatabase database;
@@ -42,45 +38,41 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback,
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        //NotaFragment fragment1 = new NotaFragment();
+        //getSupportFragmentManager().beginTransaction().add(R.id.contenedor,fragment1);
+        //btnVideo = (Button) findViewById(R.id.boton_video);
+        //btnNota = (Button) findViewById(R.id.boton_nota);
+
+        //btnNota.setOnClickListener(this);
+        //btnVideo.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(FirebaseReferencias.RUTA_REFERENCIA);
-        Localizacion localizacion = new Localizacion(6, -75);
-        myRef.child(FirebaseReferencias.DATOS_REFERENCIA).setValue(localizacion);
         myRef.child(FirebaseReferencias.DATOS_REFERENCIA).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Localizacion localizacion = dataSnapshot.getValue(Localizacion.class);
                 latitud =  localizacion.getLatitud();
                 longitud = localizacion.getLongitud();
-                //Log.i("LATITUD", String.valueOf(latitud));
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.i("LATITUD", String.valueOf(latitud));
             }
         });
 
-        NotaFragment fragment1 = new NotaFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.contenedor,fragment1);
-        btnVideo = (Button) findViewById(R.id.boton_video);
-        btnNota = (Button) findViewById(R.id.boton_nota);
-
-        btnNota.setOnClickListener(this);
-        btnVideo.setOnClickListener(this);
-    }
-
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Log.i("LATITUD", String.valueOf(latitud));     // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(latitud, longitud);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Ruta"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng posicionRuta = new LatLng(latitud, longitud);
+        mMap.addMarker(new MarkerOptions().position(posicionRuta).title("Ruta"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(posicionRuta));
     }
 
-    @Override
+    /*@Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.boton_nota:
@@ -98,5 +90,5 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback,
 
         }
 
-    }
+    }*/
 }

@@ -92,9 +92,10 @@ public class ingreso  extends AppCompatActivity implements GoogleApiClient.OnCon
                 helper.abrirDB();
                 String email = txtNameUsu.getText().toString();
                 String pass = txtPassUsu.getText().toString();
-                boolean si=  helper.loginUsuario(email, pass);
-                if(si == true && email == "admin"){
-
+                boolean si =  helper.loginUsuario(email, pass);
+                if(si == true && email.equals("admin")){
+                    Intent Coordenadas = new Intent(this, CoordenadasAdmin.class);
+                    startActivity(Coordenadas);
                 }
                 else if (si == true){
                     Intent mapsUser = new Intent(this, UsuarioMaps.class);

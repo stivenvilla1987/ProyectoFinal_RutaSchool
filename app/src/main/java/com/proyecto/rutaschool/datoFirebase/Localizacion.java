@@ -5,6 +5,7 @@ package com.proyecto.rutaschool.datoFirebase;
  */
 
 public class Localizacion {
+
     double latitud;
     double longitud;
 
