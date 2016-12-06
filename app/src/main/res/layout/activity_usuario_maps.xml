@@ -52,27 +52,27 @@
             android:layout_height="400dp"
             android:id="@+id/contenedor">
         </FrameLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="vertical">
-            <ExpandableListView
-                android:id="@+id/ex_lista"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:orientation="vertical">-->
+            <!--<ExpandableListView-->
+                <!--android:id="@+id/ex_lista"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="match_parent">-->
 
-            </ExpandableListView>
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorFondo">
+            <!--</ExpandableListView>-->
+            <!--<ScrollView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="200dp">-->
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/colorFondo">-->
 
-                </RelativeLayout>
-            </ScrollView>
-        </LinearLayout>
+                <!--</RelativeLayout>-->
+            <!--</ScrollView>-->
+        <!--</LinearLayout>-->
 
     </LinearLayout>
 </LinearLayout>
