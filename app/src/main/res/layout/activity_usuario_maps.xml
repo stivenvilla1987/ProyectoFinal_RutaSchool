@@ -12,6 +12,12 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:background="@color/blanco">
+        <Button
+            android:id="@+id/sigoutGoogleBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"/>
+
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -21,58 +27,6 @@
             android:layout_height="match_parent"
             tools:context="com.proyecto.rutaschool.UsuarioMaps">
         </fragment>
-
-
-        <!--<LinearLayout
-            android:id="@+id/bottom_bar_video"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/boton_nota"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/colorAccent"
-                android:textColor="@android:color/white"
-                android:text="notificaciones" />
-            <Button
-                android:id="@+id/boton_video"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/colorAccent"
-                android:textColor="@android:color/white"
-                android:text="Video Cam" />
-        </LinearLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:id="@+id/contenedor">
-        </FrameLayout>
-        <!-<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:orientation="vertical">-->
-            <!--<ExpandableListView-->
-                <!--android:id="@+id/ex_lista"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="match_parent">-->
-
-            <!--</ExpandableListView>-->
-            <!--<ScrollView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp">-->
-                <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:background="@color/colorFondo">-->
-
-                <!--</RelativeLayout>-->
-            <!--</ScrollView>-->
-        <!--</LinearLayout>-->
 
     </LinearLayout>
 </LinearLayout>

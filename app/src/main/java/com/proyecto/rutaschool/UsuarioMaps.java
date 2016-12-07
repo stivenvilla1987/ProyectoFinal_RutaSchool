@@ -1,8 +1,10 @@
 package com.proyecto.rutaschool;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,6 +14,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,12 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.proyecto.rutaschool.datoFirebase.FirebaseReferencias;
 import com.proyecto.rutaschool.datoFirebase.Localizacion;
 
-public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
+public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener{
 
     public static double latitud;
     public static double longitud;
     private GoogleMap mMap;
-    Button btnVideo, btnNota;
+    Button btnCerrar, btnNota;
    // private FirebaseDatabase database;
    // private DatabaseReference myRef;
 
@@ -40,6 +43,7 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        findViewById(R.id.sigoutGoogleBtn).setOnClickListener(this);
         //NotaFragment fragment1 = new NotaFragment();
         //getSupportFragmentManager().beginTransaction().add(R.id.contenedor,fragment1);
         //btnVideo = (Button) findViewById(R.id.boton_video);
@@ -73,6 +77,22 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    private  void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        Intent cerrar = new Intent(this, ingreso.class);
+        startActivity(cerrar);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sigoutGoogleBtn:
+                Intent cerrar = new Intent(this, ingreso.class);
+                startActivity(cerrar);
+                break;
+        }
     }
 
     /*@Override
