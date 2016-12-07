@@ -1,8 +1,10 @@
 package com.proyecto.rutaschool;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,6 +14,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +28,7 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
     public static double latitud;
     public static double longitud;
     private GoogleMap mMap;
-    Button btnVideo, btnNota;
+    Button btnCerrar, btnNota;
    // private FirebaseDatabase database;
    // private DatabaseReference myRef;
 
@@ -39,14 +42,13 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        //NotaFragment fragment1 = new NotaFragment();
-        //getSupportFragmentManager().beginTransaction().add(R.id.contenedor,fragment1);
-        //btnVideo = (Button) findViewById(R.id.boton_video);
-        //btnNota = (Button) findViewById(R.id.boton_nota);
-
-        //btnNota.setOnClickListener(this);
-        //btnVideo.setOnClickListener(this);
+        btnCerrar = (Button) findViewById(R.id.sigoutGoogleBtn);
+        btnCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
     }
 
 
@@ -75,23 +77,10 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
         });
     }
 
-    /*@Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.boton_nota:
-                NotaFragment fragment1 = new NotaFragment();
-                FragmentTransaction transition1 =  getSupportFragmentManager().beginTransaction();
-                transition1.replace(R.id.contenedor,fragment1);
-                transition1.commit();
-                break;
-            case R.id.boton_video:
-                VideoFragment fragment2 = new VideoFragment();
-                FragmentTransaction transition2 =  getSupportFragmentManager().beginTransaction();
-                transition2.replace(R.id.contenedor,fragment2);
-                transition2.commit();
-                break;
+    private  void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        Intent cerrar = new Intent(this, ingreso.class);
+        startActivity(cerrar);
+    }
 
-        }
-
-    }*/
 }

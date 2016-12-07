@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +40,7 @@ public class CoordenadasAdmin extends AppCompatActivity implements OnMapReadyCal
 
     Marker marcador;
     GoogleMap mMap2;
-    private Button btn_start, btn_stop;
+    private Button btn_start, btn_stop, btn_cerrar;
     //private TextView textView2;
     //private TextView textView3;
     private BroadcastReceiver broadcastReceiver;
@@ -71,8 +72,13 @@ public class CoordenadasAdmin extends AppCompatActivity implements OnMapReadyCal
 
         btn_start = (Button) findViewById(R.id.button);
         btn_stop = (Button) findViewById(R.id.button2);
-        //textView2 = (TextView) findViewById(R.id.textView2);
-        //textView3 = (TextView) findViewById(R.id.textView3);
+        btn_cerrar = (Button) findViewById(R.id.sigoutGoogleBtn);
+        btn_cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
 
         if(broadcastReceiver == null){
             broadcastReceiver = new BroadcastReceiver() {
@@ -180,5 +186,10 @@ public class CoordenadasAdmin extends AppCompatActivity implements OnMapReadyCal
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+    private  void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        Intent cerrar = new Intent(this, ingreso.class);
+        startActivity(cerrar);
     }
 }
