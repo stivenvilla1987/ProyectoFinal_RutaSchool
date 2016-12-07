@@ -15,12 +15,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +37,7 @@ import static com.proyecto.rutaschool.UsuarioMaps.longitud;
 
 public class CoordenadasAdmin extends AppCompatActivity implements OnMapReadyCallback {
 
+    Marker marcador;
     GoogleMap mMap2;
     private Button btn_start, btn_stop;
     //private TextView textView2;
@@ -157,8 +160,20 @@ public class CoordenadasAdmin extends AppCompatActivity implements OnMapReadyCal
                 longitud = localizacion.getLongitud();
                 Log.i("latitud",String.valueOf(latitud));
                 LatLng posicionRuta = new LatLng(latitud, longitud);
-                mMap2.addMarker(new MarkerOptions().position(posicionRuta).title("Ruta").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+                agregar_marcador(posicionRuta);
+                /*mMap2.addMarker(new MarkerOptions().position(posicionRuta).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)).title("Ruta"));
                 mMap2.moveCamera(CameraUpdateFactory.newLatLng(posicionRuta));
+                mMap2.animateCamera( CameraUpdateFactory.zoomTo( 17.0f ) );*/
+            }
+
+            private void agregar_marcador (LatLng posicionRuta){
+                CameraUpdate miPisicion = CameraUpdateFactory.newLatLngZoom(posicionRuta,16);
+                if (marcador!=null)marcador.remove();
+                marcador=mMap2.addMarker(new MarkerOptions()
+                        .position(posicionRuta)
+                        .title("Mi Ruta")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+                mMap2.animateCamera(miPisicion);
             }
 
             @Override
