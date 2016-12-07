@@ -161,8 +161,8 @@ public class ingreso  extends AppCompatActivity implements GoogleApiClient.OnCon
     private void signIn(){
         Intent signIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signIntent, RC_SIGN_IN);
-        Intent mapsUser = new Intent(this, UsuarioMaps.class);
-        startActivity(mapsUser);
+        Intent Coordenadas = new Intent(this, CoordenadasAdmin.class);
+        startActivity(Coordenadas);
 
     }
 

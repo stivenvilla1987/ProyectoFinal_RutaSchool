@@ -32,28 +32,7 @@ public class CoordenadasAdmin extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(broadcastReceiver == null){
-            broadcastReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
 
-                    textView2.append("\n" +intent.getExtras().get("Latitud"));
-
-
-                    textView3.append("\n" +intent.getExtras().get("Longitud"));
-
-                    latit = (Double) intent.getExtras().get("Latitud");
-                    longit = (Double) intent.getExtras().get("Latitud");
-
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference(FirebaseReferencias.RUTA_REFERENCIA);
-                    Localizacion localizacion = new Localizacion(latit, longit);
-                    myRef.child(FirebaseReferencias.DATOS_REFERENCIA).setValue(localizacion);
-
-                }
-            };
-        }
-        registerReceiver(broadcastReceiver,new IntentFilter("location_update"));
     }
 
     @Override
@@ -73,6 +52,27 @@ public class CoordenadasAdmin extends AppCompatActivity {
         btn_stop = (Button) findViewById(R.id.button2);
         textView2 = (TextView) findViewById(R.id.textView2);
         textView3 = (TextView) findViewById(R.id.textView3);
+
+        if(broadcastReceiver == null){
+            broadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+
+                    textView2.append("\n" +intent.getExtras().get("Latitud"));
+                    textView3.append("\n" +intent.getExtras().get("Longitud"));
+
+                    latit = (Double) intent.getExtras().get("Latitud");
+                    longit = (Double) intent.getExtras().get("Longitud");
+
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference(FirebaseReferencias.RUTA_REFERENCIA);
+                    Localizacion localizacion = new Localizacion(latit, longit);
+                    myRef.child(FirebaseReferencias.DATOS_REFERENCIA).setValue(localizacion);
+
+                }
+            };
+        }
+        registerReceiver(broadcastReceiver,new IntentFilter("location_update"));
 
         if(!runtime_permissions())
             enable_buttons();
