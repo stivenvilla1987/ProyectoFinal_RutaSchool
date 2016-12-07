@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +29,7 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
 
     public static double latitud;
     public static double longitud;
+    Marker marcador;
     private GoogleMap mMap;
     Button btnCerrar, btnNota;
    // private FirebaseDatabase database;
@@ -67,13 +70,25 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
                 longitud = localizacion.getLongitud();
                 Log.i("latitud",String.valueOf(latitud));
                 LatLng posicionRuta = new LatLng(latitud, longitud);
-                mMap.addMarker(new MarkerOptions().position(posicionRuta).title("Ruta").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(posicionRuta));
+                agregar_marcador(posicionRuta);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
+
+                private void agregar_marcador (LatLng posicionRuta) {
+                    CameraUpdate miPisicion = CameraUpdateFactory.newLatLngZoom(posicionRuta, 16);
+                    if (marcador != null) marcador.remove();
+                    marcador = mMap.addMarker(new MarkerOptions()
+                            .position(posicionRuta)
+                            .title("Mi Ruta")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+                    mMap.animateCamera(miPisicion);
+
+                }
         });
     }
 

@@ -43,7 +43,6 @@ public class Registro extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),"Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(getApplicationContext(),"Usuario incorrecto", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
