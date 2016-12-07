@@ -2,12 +2,14 @@ package com.proyecto.rutaschool;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +53,8 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+        mMap = googleMap;
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(FirebaseReferencias.RUTA_REFERENCIA);
         myRef.child(FirebaseReferencias.DATOS_REFERENCIA).addValueEventListener(new ValueEventListener() {
@@ -59,17 +63,16 @@ public class UsuarioMaps extends FragmentActivity implements OnMapReadyCallback{
                 Localizacion localizacion = dataSnapshot.getValue(Localizacion.class);
                 latitud =  localizacion.getLatitud();
                 longitud = localizacion.getLongitud();
+                Log.i("latitud",String.valueOf(latitud));
+                LatLng posicionRuta = new LatLng(latitud, longitud);
+                mMap.addMarker(new MarkerOptions().position(posicionRuta).title("Ruta").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(posicionRuta));
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        mMap = googleMap;
-        LatLng posicionRuta = new LatLng(latitud, longitud);
-        mMap.addMarker(new MarkerOptions().position(posicionRuta).title("Ruta"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(posicionRuta));
     }
 
     /*@Override
